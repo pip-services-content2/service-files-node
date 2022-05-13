@@ -1,0 +1,31 @@
+import { ConfigParams } from 'pip-services3-commons-nodex';
+import { IConfigurable } from 'pip-services3-commons-nodex';
+import { IReferences } from 'pip-services3-commons-nodex';
+import { IReferenceable } from 'pip-services3-commons-nodex';
+import { FilterParams } from 'pip-services3-commons-nodex';
+import { PagingParams } from 'pip-services3-commons-nodex';
+import { DataPage } from 'pip-services3-commons-nodex';
+import { ICommandable } from 'pip-services3-commons-nodex';
+import { CommandSet } from 'pip-services3-commons-nodex';
+import { FileV1 } from '../data/version1/FileV1';
+import { IFilesController } from './IFilesController';
+export declare class FilesController implements IConfigurable, IReferenceable, ICommandable, IFilesController {
+    private static _defaultConfig;
+    private _dependencyResolver;
+    private _persistence;
+    private _blobsClient;
+    private _facetsClient;
+    private _commandSet;
+    private _facetsGroup;
+    configure(config: ConfigParams): void;
+    setReferences(references: IReferences): void;
+    getCommandSet(): CommandSet;
+    getGroups(correlationId: string, paging: PagingParams): Promise<DataPage<string>>;
+    getFilesByFilter(correlationId: string, filter: FilterParams, paging: PagingParams): Promise<DataPage<FileV1>>;
+    getFilesByIds(correlationId: string, fileIds: string[]): Promise<FileV1[]>;
+    getFileById(correlationId: string, fileId: string): Promise<FileV1>;
+    private normalizeName;
+    createFile(correlationId: string, file: FileV1): Promise<FileV1>;
+    updateFile(correlationId: string, file: FileV1): Promise<FileV1>;
+    deleteFileById(correlationId: string, fileId: string): Promise<FileV1>;
+}

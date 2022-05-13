@@ -1,0 +1,14 @@
+---
+- descriptor: "pip-services:logger:console:default:1.0"
+  level: "trace"
+
+- descriptor: "service-files:persistence:file:default:1.0"
+  path: "./data/files.json"
+
+- descriptor: "service-files:controller:default:default:1.0"
+
+- descriptor: "service-files:service:http:default:1.0"
+  connection:
+    protocol: "http"
+    host: "0.0.0.0"
+    port: 8080
